@@ -18,6 +18,16 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Normalize trailing slashes for API routes (prevent redirect loops)
+app.use('/api*', (req, res, next) => {
+    if (req.path.endsWith('/') && req.path.length > 1) {
+        const newPath = req.path.slice(0, -1);
+        const query = req.url.slice(req.path.length);
+        return res.redirect(301, newPath + query);
+    }
+    next();
+});
+
 // API Routes
 app.use('/api', weatherRoutes);
 
