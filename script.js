@@ -1,4 +1,3 @@
-const API_KEY = 'YOUR_API_KEY_HERE';
 const BASE_URL = 'https://api.openweathermap.org/data/2.5';
 
 const cityInput = document.getElementById('cityInput');
@@ -10,10 +9,14 @@ const condition = document.getElementById('condition');
 const humidity = document.getElementById('humidity');
 const windSpeed = document.getElementById('windSpeed');
 const forecastContainer = document.getElementById('forecastContainer');
+const apiKeySection = document.getElementById('apiKeySection');
+const apiKeyInput = document.getElementById('apiKeyInput');
+const saveApiKeyBtn = document.getElementById('saveApiKeyBtn');
 
 let currentWeatherData = null;
 let currentForecastData = null;
 let isFahrenheit = false;
+let userApiKey = null;
 
 searchBtn.addEventListener('click', handleSearch);
 cityInput.addEventListener('keypress', (e) => {
@@ -30,10 +33,45 @@ tempToggle.addEventListener('change', (e) => {
     }
 });
 
+saveApiKeyBtn.addEventListener('click', saveApiKey);
+apiKeyInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        saveApiKey();
+    }
+});
+
+function saveApiKey() {
+    const apiKey = apiKeyInput.value.trim();
+    if (!apiKey) {
+        showError('Please enter a valid API key');
+        return;
+    }
+
+    userApiKey = apiKey;
+    localStorage.setItem('openweatherApiKey', apiKey);
+    apiKeySection.classList.add('hidden');
+    showError('API key saved successfully! You can now search for weather data.');
+}
+
+function loadApiKey() {
+    const savedKey = localStorage.getItem('openweatherApiKey');
+    if (savedKey) {
+        userApiKey = savedKey;
+        apiKeySection.classList.add('hidden');
+        return true;
+    }
+    return false;
+}
+
 async function handleSearch() {
     const city = cityInput.value.trim();
     if (!city) {
         showError('Please enter a city name');
+        return;
+    }
+
+    if (!userApiKey) {
+        showError('Please configure your API key first');
         return;
     }
 
@@ -44,14 +82,14 @@ async function handleSearch() {
             getForecast(city)
         ]);
     } catch (error) {
-        showError('Failed to fetch weather data. Please try again.');
+        showError('Failed to fetch weather data. Please check your API key and try again.');
         console.error('Weather API Error:', error);
     }
 }
 
 async function getCurrentWeather(city) {
     const response = await fetch(
-        `${BASE_URL}/weather?q=${encodeURIComponent(city)}&appid=${API_KEY}&units=metric`
+        `${BASE_URL}/weather?q=${encodeURIComponent(city)}&appid=${userApiKey}&units=metric`
     );
 
     if (!response.ok) {
@@ -65,7 +103,7 @@ async function getCurrentWeather(city) {
 
 async function getForecast(city) {
     const response = await fetch(
-        `${BASE_URL}/forecast?q=${encodeURIComponent(city)}&appid=${API_KEY}&units=metric`
+        `${BASE_URL}/forecast?q=${encodeURIComponent(city)}&appid=${userApiKey}&units=metric`
     );
 
     if (!response.ok) {
@@ -187,7 +225,7 @@ function showError(message) {
 }
 
 window.addEventListener('load', () => {
-    if (API_KEY === 'YOUR_API_KEY_HERE') {
-        showError('Please configure your OpenWeatherMap API key in the script.js file');
+    if (!loadApiKey()) {
+        showError('Please enter your OpenWeatherMap API key to get started');
     }
 });
