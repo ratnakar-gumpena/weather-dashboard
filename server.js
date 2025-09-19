@@ -18,16 +18,8 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve static files (your existing frontend)
-app.use(express.static(path.join(__dirname)));
-
 // API Routes
 app.use('/api', weatherRoutes);
-
-// Serve index.html for the root route
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
-});
 
 // Health check endpoint
 app.get('/health', (req, res) => {
@@ -38,17 +30,27 @@ app.get('/health', (req, res) => {
     });
 });
 
+// Serve static files only if not in production (for local development)
+if (process.env.NODE_ENV !== 'production') {
+    app.use(express.static(path.join(__dirname)));
+
+    // Serve index.html for the root route (local development only)
+    app.get('/', (req, res) => {
+        res.sendFile(path.join(__dirname, 'index.html'));
+    });
+
+    // Handle 404 for other routes - serve index.html (SPA behavior, local only)
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, 'index.html'));
+    });
+}
+
 // Handle 404 for API routes
 app.use('/api/*', (req, res) => {
     res.status(404).json({
         error: 'API endpoint not found',
         message: `Route ${req.originalUrl} does not exist`
     });
-});
-
-// Handle 404 for other routes - serve index.html (SPA behavior)
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Error handling middleware
