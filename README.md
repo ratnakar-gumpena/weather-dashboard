@@ -10,10 +10,6 @@ A modern, responsive weather dashboard built with HTML, CSS, and JavaScript that
 - **Responsive Design**: Works seamlessly on desktop and mobile devices
 - **Modern UI**: Clean, intuitive interface with smooth animations
 
-## Screenshots
-
-![Weather Dashboard](screenshot.png)
-
 ## Getting Started
 
 ### Prerequisites
