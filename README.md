@@ -2,22 +2,34 @@
 
 A modern, responsive weather dashboard built with HTML, CSS, and JavaScript that provides current weather conditions and 5-day forecasts for any city worldwide.
 
+🌐 **Live Demo**: [https://main.d2csde3gfk3zd7.amplifyapp.com](https://main.d2csde3gfk3zd7.amplifyapp.com)
+
 ## Features
 
 - **Current Weather Display**: Shows temperature, weather condition, humidity, and wind speed
 - **5-Day Forecast**: Displays upcoming weather predictions
 - **Temperature Unit Toggle**: Switch between Celsius and Fahrenheit
+- **User API Key Input**: Secure way to enter your own OpenWeatherMap API key
+- **Local Storage**: API key persists across browser sessions
 - **Responsive Design**: Works seamlessly on desktop and mobile devices
 - **Modern UI**: Clean, intuitive interface with smooth animations
 
 ## Getting Started
 
-### Prerequisites
+### Quick Start (Live Demo)
+
+1. Visit the live demo: [https://main.d2csde3gfk3zd7.amplifyapp.com](https://main.d2csde3gfk3zd7.amplifyapp.com)
+2. Get your free API key from [OpenWeatherMap](https://openweathermap.org/api)
+3. Enter your API key in the app and start searching for weather data!
+
+### Local Development
+
+#### Prerequisites
 
 - A web browser
 - OpenWeatherMap API key (free registration required)
 
-### Installation
+#### Installation
 
 1. Clone the repository:
    ```bash
@@ -30,21 +42,15 @@ A modern, responsive weather dashboard built with HTML, CSS, and JavaScript that
    - Sign up for a free account
    - Generate an API key
 
-3. Configure the API key:
-   - Open `script.js`
-   - Replace `'YOUR_API_KEY_HERE'` with your actual API key:
-     ```javascript
-     const API_KEY = 'your_actual_api_key_here';
-     ```
-
-4. Open `index.html` in your web browser
+3. Open `index.html` in your web browser
 
 ## Usage
 
-1. Enter a city name in the search box
-2. Click the "Search" button or press Enter
-3. View current weather conditions and 5-day forecast
-4. Use the toggle switch to switch between Celsius and Fahrenheit
+1. **First Time Setup**: Enter your OpenWeatherMap API key when prompted
+2. **Search Weather**: Enter a city name in the search box
+3. **Get Results**: Click "Search" or press Enter to view current weather and 5-day forecast
+4. **Toggle Units**: Use the switch to change between Celsius and Fahrenheit
+5. **Persistent Key**: Your API key is saved locally and will persist across sessions
 
 ## Technologies Used
 
