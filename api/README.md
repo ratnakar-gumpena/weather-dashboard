@@ -1,6 +1,6 @@
 # Weather Dashboard API
 
-This API provides weather data endpoints for external applications to fetch current weather and forecast information.
+This API provides simplified weather data endpoints for external applications to fetch current temperature information.
 
 ## Base URL
 - Local Development: `http://localhost:3000/api`
@@ -11,11 +11,11 @@ All API endpoints require an OpenWeatherMap API key passed as a query parameter.
 
 ## Endpoints
 
-### Get Current Weather
+### Get Current Temperature
 
 **GET** `/api/weather/:city`
 
-Fetch current weather data for a specific city.
+Fetch current temperature and feels-like temperature for a specific city.
 
 #### Parameters
 - `city` (path parameter, required): Name of the city
@@ -30,75 +30,12 @@ GET /api/weather/London?apikey=YOUR_API_KEY&units=metric
 #### Example Response
 ```json
 {
-  "success": true,
-  "data": {
-    "city": "London",
-    "country": "GB",
-    "temperature": {
-      "current": 15.5,
-      "feels_like": 14.2,
-      "min": 12.0,
-      "max": 18.0,
-      "unit": "C"
-    },
-    "weather": {
-      "main": "Clouds",
-      "description": "scattered clouds",
-      "icon": "03d"
-    },
-    "humidity": 72,
-    "pressure": 1013,
-    "wind": {
-      "speed": 3.6,
-      "direction": 250
-    },
-    "visibility": 10000,
-    "timestamp": "2024-01-15T10:30:00.000Z",
-    "source": "OpenWeatherMap"
-  }
+  "temperature": 15.5,
+  "feels_like": 14.2
 }
 ```
 
-### Get 5-Day Forecast
-
-**GET** `/api/forecast/:city`
-
-Fetch 5-day weather forecast for a specific city.
-
-#### Parameters
-- `city` (path parameter, required): Name of the city
-- `apikey` (query parameter, required): Your OpenWeatherMap API key
-- `units` (query parameter, optional): Temperature units (`metric` for Celsius, `imperial` for Fahrenheit). Default: `metric`
-
-#### Example Request
-```bash
-GET /api/forecast/London?apikey=YOUR_API_KEY&units=metric
-```
-
-#### Example Response
-```json
-{
-  "success": true,
-  "data": {
-    "city": "London",
-    "country": "GB",
-    "forecasts": [
-      {
-        "date": "Mon Jan 15 2024",
-        "temperature": {
-          "average": 16,
-          "unit": "C"
-        },
-        "condition": "scattered clouds",
-        "humidity": 68,
-        "windSpeed": 4
-      }
-    ],
-    "timestamp": "2024-01-15T10:30:00.000Z",
-    "source": "OpenWeatherMap"
-  }
-}
-```
+**Note:** The forecast endpoint has been removed. This API now focuses solely on current temperature data.
 
 ## Error Responses
 
@@ -140,7 +77,7 @@ GET /api/forecast/London?apikey=YOUR_API_KEY&units=metric
 ```javascript
 const response = await fetch('/api/weather/London?apikey=YOUR_API_KEY');
 const data = await response.json();
-console.log(data);
+console.log(`Temperature: ${data.temperature}°C, Feels like: ${data.feels_like}°C`);
 ```
 
 ### cURL
@@ -156,6 +93,7 @@ req.setMethod('GET');
 Http http = new Http();
 HttpResponse res = http.send(req);
 String responseBody = res.getBody();
+// Response: {"temperature":15.5,"feels_like":14.2}
 ```
 
 ## CORS Configuration
