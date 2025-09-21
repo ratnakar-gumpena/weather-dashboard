@@ -1,10 +1,10 @@
 # Weather Dashboard API
 
-This API provides simplified weather data endpoints for external applications to fetch current temperature information.
+This API provides simplified weather data for external applications (like Salesforce) to fetch current temperature information.
 
 ## Base URL
-- Local Development: `http://localhost:3000/api`
-- Production: `https://your-domain.com/api`
+- **Production**: `http://WeatherDashboard-env.eba-ai4q4ugm.us-east-1.elasticbeanstalk.com/api`
+- **Local Development**: `http://localhost:3000/api`
 
 ## Authentication
 All API endpoints require an OpenWeatherMap API key passed as a query parameter.
@@ -15,7 +15,7 @@ All API endpoints require an OpenWeatherMap API key passed as a query parameter.
 
 **GET** `/api/weather/:city`
 
-Fetch current temperature and feels-like temperature for a specific city.
+Fetch current temperature and feels-like temperature for a specific city. Optimized for Salesforce outbound integrations.
 
 #### Parameters
 - `city` (path parameter, required): Name of the city
@@ -35,7 +35,7 @@ GET /api/weather/London?apikey=YOUR_API_KEY&units=metric
 }
 ```
 
-**Note:** The forecast endpoint has been removed. This API now focuses solely on current temperature data.
+**Note:** This API focuses solely on current temperature data for external integrations. The web application includes a 5-day forecast feature that fetches data directly from OpenWeatherMap in the browser.
 
 ## Error Responses
 

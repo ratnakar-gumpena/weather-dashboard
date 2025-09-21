@@ -2,7 +2,8 @@
 
 A modern, responsive weather dashboard built with HTML, CSS, and JavaScript that provides current weather conditions and 5-day forecasts for any city worldwide.
 
-🌐 **Live Demo**: [https://main.d2csde3gfk3zd7.amplifyapp.com](https://main.d2csde3gfk3zd7.amplifyapp.com)
+🌐 **Live Demo**: [http://WeatherDashboard-env.eba-ai4q4ugm.us-east-1.elasticbeanstalk.com](http://WeatherDashboard-env.eba-ai4q4ugm.us-east-1.elasticbeanstalk.com)
+🔗 **API Endpoint**: [http://WeatherDashboard-env.eba-ai4q4ugm.us-east-1.elasticbeanstalk.com/api/weather/Dallas?apikey=YOUR_KEY](http://WeatherDashboard-env.eba-ai4q4ugm.us-east-1.elasticbeanstalk.com/api/weather/Dallas?apikey=YOUR_KEY)
 
 ## Features
 
@@ -46,11 +47,17 @@ A modern, responsive weather dashboard built with HTML, CSS, and JavaScript that
 
 ## Usage
 
+### Web Application
 1. **First Time Setup**: Enter your OpenWeatherMap API key when prompted
 2. **Search Weather**: Enter a city name in the search box
 3. **Get Results**: Click "Search" or press Enter to view current weather and 5-day forecast
 4. **Toggle Units**: Use the switch to change between Celsius and Fahrenheit
 5. **Persistent Key**: Your API key is saved locally and will persist across sessions
+
+### API Integration (Salesforce)
+- **Endpoint**: `http://WeatherDashboard-env.eba-ai4q4ugm.us-east-1.elasticbeanstalk.com/api/weather/CITY?apikey=YOUR_KEY`
+- **Response**: `{"temperature": 29.42, "feels_like": 33.67}`
+- **Documentation**: See `api/README.md` for detailed API documentation
 
 ## Technologies Used
 

@@ -17,5 +17,10 @@ Thumbs.db
 
 # Build directories
 dist/
-build/node_modules/
+build/
+node_modules/
 env
+
+# Deployment files
+*.zip
+weather-dashboard-eb.zip
