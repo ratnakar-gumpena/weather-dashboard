@@ -1,6 +1,6 @@
 # Weather Dashboard
 
-A modern, responsive weather dashboard built with HTML, CSS, and JavaScript that provides current weather conditions and 5-day forecasts for any city worldwide.
+A modern, responsive weather dashboard built with HTML, CSS, and JavaScript that provides current weather conditions and 5-day forecasts for any city worldwide. Now with automated CI/CD deployment!
 
 🌐 **Live Demo**: [http://WeatherDashboard-env.eba-ai4q4ugm.us-east-1.elasticbeanstalk.com](http://WeatherDashboard-env.eba-ai4q4ugm.us-east-1.elasticbeanstalk.com)
 🔗 **API Endpoint**: [http://WeatherDashboard-env.eba-ai4q4ugm.us-east-1.elasticbeanstalk.com/api/weather/Dallas?apikey=YOUR_KEY](http://WeatherDashboard-env.eba-ai4q4ugm.us-east-1.elasticbeanstalk.com/api/weather/Dallas?apikey=YOUR_KEY)
