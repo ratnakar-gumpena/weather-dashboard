@@ -67,4 +67,5 @@ app.listen(PORT, () => {
     console.log(`📱 Frontend: http://localhost:${PORT}`);
     console.log(`🔗 API: http://localhost:${PORT}/api/weather/:city`);
     console.log(`❤️  Health Check: http://localhost:${PORT}/health`);
+    console.log(`🚀 CI/CD Pipeline: Active and deployed from GitHub!`);
 });
